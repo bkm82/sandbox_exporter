@@ -15,30 +15,33 @@ Awesome sandbox_exporter created by bkm82
 
 ** Install it from PyPI
 
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC bash
+  pip install sandbox_exporter
+ #+END_SRC
 
-```bash
-pip install sandbox_exporter
-```
 
 ** Usage
 
-```py
-from sandbox_exporter import BaseClass
-from sandbox_exporter import base_function
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC python
+  from sandbox_exporter import BaseClass
+  from sandbox_exporter import base_function
 
-BaseClass().base_method()
-base_function()
-```
+  BaseClass().base_method()
+  base_function()
+ #+END_SRC
 
-```bash
-$ python -m sandbox_exporter
-#or
-$ sandbox_exporter
-```
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC bash
+  $ python -m sandbox_exporter
+  #or
+  $ sandbox_exporter
+ #+END_SRC
 
 ** Development
 
-Read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+Read the [[CONTRIBUTING.md]] file.
 
 
 * Example
@@ -49,7 +52,7 @@ Read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
   import pandas as pd
  #+END_SRC
 
-#+RESULTS:
+
 
 Example equation format
 $$x \epsilon [0,1]$$
