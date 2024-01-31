@@ -20,8 +20,8 @@ original_author="bkm82"
 original_name="sandbox_exporter"
 original_urlname="sandbox_exporter"
 original_description="Awesome sandbox_exporter created by bkm82"
-# for filename in $(find . -name "*.*") 
-for filename in $(git ls-files) 
+# for filename in $(find . -name "*.*")
+for filename in $(git ls-files)
 do
     sed -i "s/$original_author/$author/g" $filename
     sed -i "s/$original_name/$name/g" $filename
