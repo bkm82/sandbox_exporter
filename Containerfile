@@ -1,5 +1,13 @@
 FROM python:3.10.2-slim-buster
-COPY . /app
+
 WORKDIR /app
-RUN pip install .
-CMD ["sandbox_exporter"]
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY server.py .
+
+EXPOSE 5000
+
+ENTRYPOINT["python", "server.py"]
