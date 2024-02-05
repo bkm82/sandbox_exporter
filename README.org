@@ -42,4 +42,3 @@ Awesome sandbox_exporter created by bkm82
 ** Development
 
 Read the [[CONTRIBUTING.md]] file.
-
