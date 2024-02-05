@@ -43,16 +43,3 @@ Awesome sandbox_exporter created by bkm82
 
 Read the [[CONTRIBUTING.md]] file.
 
-
-* Example
-** Codeblock
-
-#+ATTR_LATEX: :options frame=single
-#+BEGIN_SRC python :results output :exports both :session Python-Session
-  import pandas as pd
- #+END_SRC
-
-
-
-Example equation format
-$$x \epsilon [0,1]$$
