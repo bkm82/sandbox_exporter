@@ -4,10 +4,10 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 COPY server.py .
 
 EXPOSE 5000
 
-ENTRYPOINT["python", "server.py"]
+ENTRYPOINT ["python","server.py"]
