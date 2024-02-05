@@ -1,0 +1,44 @@
+
+#+TITLE: Sandbox Exporter
+#+AUTHOR: Bray Moll
+#+OPTIONS: toc:nil
+#+SETUPFILE: ~/masters/bray-standard-latex-export.org
+
+* sandbox_exporter
+
+[[https://codecov.io/gh/bkm82/sandbox_exporter][https://codecov.io/gh/bkm82/sandbox_exporter/branch/main/graph/badge.svg?token=sandbox_exporter_token_here]]
+
+[[https://github.com/bkm82/sandbox_exporter/actions/workflows/main.yml][https://github.com/bkm82/sandbox_exporter/actions/workflows/main.yml/badge.svg]]
+
+
+Awesome sandbox_exporter created by bkm82
+
+** Install it from PyPI
+
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC bash
+  pip install sandbox_exporter
+ #+END_SRC
+
+
+** Usage
+
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC python
+  from sandbox_exporter import BaseClass
+  from sandbox_exporter import base_function
+
+  BaseClass().base_method()
+  base_function()
+ #+END_SRC
+
+#+ATTR_LATEX: :options frame=single
+#+BEGIN_SRC bash
+  $ python -m sandbox_exporter
+  #or
+  $ sandbox_exporter
+ #+END_SRC
+
+** Development
+
+Read the [[CONTRIBUTING.md]] file.
