@@ -10,4 +10,4 @@ COPY sandbox_exporter .
 
 EXPOSE 5000
 
-ENTRYPOINT ["python","server.py"]
+ENTRYPOINT ["python","base.py"]
