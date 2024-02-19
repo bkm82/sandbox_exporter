@@ -11,6 +11,7 @@ from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
 import prometheus_client
 import uvicorn
+import requests
 
 app = FastAPI()
 
@@ -35,6 +36,54 @@ flip_count = prometheus_client.Counter(
     "flip_count",
     "Number of flips",
 )
+
+# kpac_rating = prometheus_client.Gauge(
+#     "kpac_rating",
+#     "Current Danger Rating for KPAC",
+# )
+
+@app.get("/get-avalanche-forcasts")
+async def get_avalance_forcasts():
+    avalanche_api_response = get_avalanche_from_api()
+    forcasts = filter_forcasts(avalanche_api_response)
+    
+    return({"forcasts": forcasts})
+
+def get_avalanche_from_api(url = "https://api.avalanche.org/v2/public/products/map-layer"):
+    """Get the NAC api json response"""
+    response = requests.get(url)
+    api_resonse = response.json()
+    return(api_resonse)
+
+def filter_forcasts(api_response):
+    """Get the forcast for all centers
+
+    removes CAIC forcasts as they do not have a uniqe identifier
+    removes any forcasts without an active rating
+    returns dict{startdate, name, rating}
+    """
+    filtered_featuers = []
+    
+    # dictonary of responses that are being kept (my_name, NAC_name)
+    feature_dict = {
+        'start_date':'start_date',
+        'name':'name',
+        'rating':'danger_level'
+        
+    }
+
+    for feature in api_response["features"]:
+        filtered_feature = dict()
+        for key, value in feature_dict.items():
+            filtered_feature[key] = get_feature(feature,value)
+            
+        if not( ("CAIC" in filtered_feature['name'] or filtered_feature['rating'] == -1)):
+           # print(filtered_feature)
+            filtered_featuers.append(filtered_feature)
+    return(filtered_featuers)
+
+def get_feature(feature, name):
+    return(feature['properties'][name])
 
 @app.get("/flip-coins")
 async def flip_coins(times=None):
