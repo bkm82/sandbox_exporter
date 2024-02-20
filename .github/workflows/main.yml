@@ -49,7 +49,7 @@ jobs:
       - name: Run tests
         run: make test
       - name: "Upload coverage to Codecov"
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         # with:
         #   fail_ci_if_error: true
 
@@ -85,7 +85,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install Pip
-        run: pip install --user --upgrade pip
+        run: python.exe -m pip install --user --upgrade pip
       - name: Install project
         run: pip install -e .[test]
       - name: run tests

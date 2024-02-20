@@ -1,4 +1,5 @@
 """Python setup.py for sandbox_exporter package"""
+
 import io
 import os
 from setuptools import find_packages, setup
@@ -8,7 +9,7 @@ def read(*paths, **kwargs):
     """Read the contents of a text file safely.
     >>> read("sandbox_exporter", "VERSION")
     '0.1.0'
-    >>> read("README.md")
+    >>> read("README.org")
     ...
     """
 
@@ -34,7 +35,7 @@ setup(
     version=read("sandbox_exporter", "VERSION"),
     description="Awesome sandbox_exporter created by bkm82",
     url="https://github.com/bkm82/sandbox_exporter/",
-    long_description=read("README.md"),
+    long_description=read("README.org"),
     long_description_content_type="text/markdown",
     author="bkm82",
     packages=find_packages(exclude=["tests", ".github"]),
