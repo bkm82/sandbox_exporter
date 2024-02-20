@@ -8,5 +8,3 @@ services:
     restart: 'on-failure'
     ports:
      - 5000:5000
-
-      
