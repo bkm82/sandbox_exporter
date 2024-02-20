@@ -5,6 +5,7 @@ This module creates a coin flip API.
 created in the projects base directory to simplify following the tutorial
 
 """
+NAME = "sandbox_exporter"
 import random
 
 from fastapi import FastAPI, HTTPException, Response
