@@ -6,15 +6,15 @@ created in the projects base directory to simplify following the tutorial
 
 """
 
-NAME = "sandbox_exporter"
 import random
 
+import prometheus_client
+import requests  # type: ignore
+import uvicorn
 from fastapi import FastAPI, HTTPException, Response
 from fastapi.middleware.cors import CORSMiddleware
-import prometheus_client
-import uvicorn
-import requests
 
+NAME = "sandbox_exporter"
 app = FastAPI()
 
 app.add_middleware(
@@ -84,7 +84,10 @@ def filter_forcasts(api_response):
             filtered_feature[key] = get_feature(feature, value)
 
         if not (
-            ("CAIC" in filtered_feature["name"] or filtered_feature["rating"] == -1)
+            (
+                "CAIC" in filtered_feature["name"]
+                or filtered_feature["rating"] == -1
+            )
         ):
             # print(filtered_feature)
             filtered_featuers.append(filtered_feature)
