@@ -44,12 +44,12 @@ flip_count = prometheus_client.Counter(
 # )
 
 
-@app.get("/get-avalanche-forcasts")
-async def get_avalance_forcasts():
+@app.get("/get-avalanche-forecasts")
+async def get_avalance_forecasts():
     avalanche_api_response = get_avalanche_from_api()
-    forcasts = filter_forcasts(avalanche_api_response)
+    forecasts = filter_forecasts(avalanche_api_response)
 
-    return {"forcasts": forcasts}
+    return {"forecasts": forecasts}
 
 
 def get_avalanche_from_api(
@@ -61,11 +61,11 @@ def get_avalanche_from_api(
     return api_resonse
 
 
-def filter_forcasts(api_response):
-    """Get the forcast for all centers
+def filter_forecasts(api_response):
+    """Get the forecast for all centers
 
-    removes CAIC forcasts as they do not have a uniqe identifier
-    removes any forcasts without an active rating
+    removes CAIC forecasts as they do not have a uniqe identifier
+    removes any forecasts without an active rating
     returns dict{startdate, name, rating}
     """
     filtered_featuers = []
@@ -95,6 +95,23 @@ def filter_forcasts(api_response):
 
 def get_feature(feature, name):
     return feature["properties"][name]
+
+
+def get_forecast(forecasts, name):
+    """
+    Get the forecast level for a given location from the forecasts.
+
+    Args:
+    - forecasts (list): List of forecast dictionaries.
+    - location_name (str): Name of the location to find in the forecasts.
+
+    Returns:
+    - int or None: Forecast level for the specified location, or None if the location is not found.
+    """
+    for forecast in forecasts:
+        if forecast.get("name") == name:
+            return forecast.get("rating")
+    return None
 
 
 @app.get("/flip-coins")
