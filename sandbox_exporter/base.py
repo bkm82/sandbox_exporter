@@ -2,7 +2,6 @@
 coinflip API base module.
 
 This module creates a coin flip API.
-created in the projects base directory to simplify following the tutorial
 
 """
 
@@ -84,10 +83,7 @@ def filter_forcasts(api_response):
             filtered_feature[key] = get_feature(feature, value)
 
         if not (
-            (
-                "CAIC" in filtered_feature["name"]
-                or filtered_feature["rating"] == -1
-            )
+            ("CAIC" in filtered_feature["name"] or filtered_feature["rating"] == -1)
         ):
             # print(filtered_feature)
             filtered_featuers.append(filtered_feature)
@@ -136,3 +132,7 @@ def get_metrics():
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=5000)
+
+
+
+    
