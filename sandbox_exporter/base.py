@@ -52,6 +52,16 @@ async def get_avalance_forecasts():
     return {"forecasts": forecasts}
 
 
+def get_demo():
+    return "Hello from demmo"
+
+
+@app.get("/demo-get-call")
+async def get_demo_call():
+    demo = get_demo()
+    return demo
+
+
 def get_avalanche_from_api(
     url="https://api.avalanche.org/v2/public/products/map-layer",
 ):

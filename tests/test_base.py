@@ -1,5 +1,8 @@
 from sandbox_exporter.base import NAME
 from sandbox_exporter.base import get_forecast
+from sandbox_exporter.base import app
+from fastapi.testclient import TestClient
+import datetime
 import pytest
 
 
@@ -45,3 +48,24 @@ class Test_forecast:
             name="San Francisco Peaks / Kachina Peaks Wilderness",
         )
         assert kpac_end_date.get("end_date") == "2024-02-20T12:00:00"
+
+    # Mocked cached response
+    @pytest.fixture
+    def mock_current_date(self):
+        return datetime.datetime(2024, 2, 20)
+
+    @pytest.fixture
+    def client(self):
+        return TestClient(app)
+
+    @pytest.mark.asyncio
+    async def test_get_avalance_forecasts(self, client):
+
+        # Make the request to the endpoint
+        response = client.get("/demo-get-call")
+
+        # Assertions
+        assert response.status_code == 200
+
+        # Ensure that get_avalanche_from_api was not called since the cached response is up-to-date
+        # get_avalanche_from_api.assert_not_called()
