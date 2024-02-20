@@ -1,6 +1,7 @@
 from sandbox_exporter.base import NAME
 from sandbox_exporter.base import get_forecast
 from sandbox_exporter.base import app
+from sandbox_exporter import base
 from fastapi.testclient import TestClient
 import datetime
 import pytest
@@ -58,14 +59,23 @@ class Test_forecast:
     def client(self):
         return TestClient(app)
 
+    @pytest.fixture
+    def mock_print(self):
+        bray = "hello from mock"
+        return bray
+
     @pytest.mark.asyncio
-    async def test_get_avalance_forecasts(self, client):
+    async def test_get_avalance_forecasts(
+        self, client, monkeypatch, mock_print
+    ):
 
         # Make the request to the endpoint
+        monkeypatch.setattr(base, "get_demo", lambda: mock_print)
         response = client.get("/demo-get-call")
 
         # Assertions
         assert response.status_code == 200
+        assert response.json() == "hello from mock"
 
         # Ensure that get_avalanche_from_api was not called since the cached response is up-to-date
         # get_avalanche_from_api.assert_not_called()

@@ -53,13 +53,14 @@ async def get_avalance_forecasts():
 
 
 def get_demo():
-    return "Hello from demmo"
+    bray = "hello from demo"
+    return bray
 
 
 @app.get("/demo-get-call")
 async def get_demo_call():
-    demo = get_demo()
-    return demo
+    # demo = get_demo()
+    return get_demo()
 
 
 def get_avalanche_from_api(
