@@ -1,6 +1,5 @@
 from sandbox_exporter.base import NAME
 from sandbox_exporter.base import get_forecast
-from sandbox_exporter.base import get_forecast_end_date
 import pytest
 
 
@@ -38,11 +37,11 @@ class Test_forecast:
             forecasts=forecast_fixture,
             name="San Francisco Peaks / Kachina Peaks Wilderness",
         )
-        assert kpac_rating == 2
+        assert kpac_rating.get("rating") == 2
 
     def test_get_end_date(self, forecast_fixture):
-        kpac_end_date = get_forecast_end_date(
+        kpac_end_date = get_forecast(
             forecasts=forecast_fixture,
             name="San Francisco Peaks / Kachina Peaks Wilderness",
         )
-        assert kpac_end_date == "2024-02-20T12:00:00"
+        assert kpac_end_date.get("end_date") == "2024-02-20T12:00:00"

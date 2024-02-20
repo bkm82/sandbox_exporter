@@ -107,28 +107,11 @@ def get_forecast(forecasts, name):
     - location_name (str): Name of the location to find in the forecasts.
 
     Returns:
-    - int or None: Forecast level for the specified location, None if not found.
+    - dict: Forecast dictionary the specified location, None if not found.
     """
     for forecast in forecasts:
         if forecast.get("name") == name:
-            return forecast.get("rating")
-    return None
-
-
-def get_forecast_end_date(forecasts, name):
-    """
-    Get the forecast level for a given location from the forecasts.
-
-    Args:
-    - forecasts (list): List of forecast dictionaries.
-    - location_name (str): Name of the location to find in the forecasts.
-
-    Returns:
-    - int or None: Forecast level for the specified location, None if not found.
-    """
-    for forecast in forecasts:
-        if forecast.get("name") == name:
-            return forecast.get("end_date")
+            return forecast
     return None
 
 
