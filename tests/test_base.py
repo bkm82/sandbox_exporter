@@ -1,5 +1,6 @@
 from sandbox_exporter.base import NAME
 from sandbox_exporter.base import get_forecast
+from sandbox_exporter.base import get_forecast_end_date
 import pytest
 
 
@@ -13,16 +14,19 @@ class Test_forecast:
         mock_forecast = (
             {
                 "start_date": "2024-02-19T14:04:00",
+                "end_date": "2024-02-20T07:00:00",
                 "name": "Tetons",
                 "rating": 2,
             },
             {
                 "start_date": "2024-02-19T13:56:00",
+                "end_date": "2024-02-20T12:00:00",
                 "name": "San Francisco Peaks / Kachina Peaks Wilderness",
                 "rating": 2,
             },
             {
                 "start_date": "2024-02-19T13:02:00",
+                "end_date": "2024-02-20T12:00:00",
                 "name": "Uintas",
                 "rating": 3,
             },
@@ -35,3 +39,10 @@ class Test_forecast:
             name="San Francisco Peaks / Kachina Peaks Wilderness",
         )
         assert kpac_rating == 2
+
+    def test_get_end_date(self, forecast_fixture):
+        kpac_end_date = get_forecast_end_date(
+            forecasts=forecast_fixture,
+            name="San Francisco Peaks / Kachina Peaks Wilderness",
+        )
+        assert kpac_end_date == "2024-02-20T12:00:00"

@@ -73,6 +73,7 @@ def filter_forecasts(api_response):
     # dictonary of responses that are being kept (my_name, NAC_name)
     feature_dict = {
         "start_date": "start_date",
+        "end_date": "end_date",
         "name": "name",
         "rating": "danger_level",
     }
@@ -106,11 +107,28 @@ def get_forecast(forecasts, name):
     - location_name (str): Name of the location to find in the forecasts.
 
     Returns:
-    - int or None: Forecast level for the specified location, or None if the location is not found.
+    - int or None: Forecast level for the specified location, None if not found.
     """
     for forecast in forecasts:
         if forecast.get("name") == name:
             return forecast.get("rating")
+    return None
+
+
+def get_forecast_end_date(forecasts, name):
+    """
+    Get the forecast level for a given location from the forecasts.
+
+    Args:
+    - forecasts (list): List of forecast dictionaries.
+    - location_name (str): Name of the location to find in the forecasts.
+
+    Returns:
+    - int or None: Forecast level for the specified location, None if not found.
+    """
+    for forecast in forecasts:
+        if forecast.get("name") == name:
+            return forecast.get("end_date")
     return None
 
 
