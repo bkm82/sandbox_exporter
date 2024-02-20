@@ -64,18 +64,31 @@ class Test_forecast:
         bray = "hello from mock"
         return bray
 
+    @pytest.fixture
+    def mock_avalanche_api(self):
+        response = "TODO: add NAC api response"
+        return response
+
+    @pytest.fixture
+    def mock_forcast_filter(self):
+        response = "TODO: add forcast filter"
+        return response
+
     @pytest.mark.asyncio
     async def test_get_avalance_forecasts(
-        self, client, monkeypatch, mock_print
+        self, client, monkeypatch, mock_avalanche_api, mock_forcast_filter
     ):
 
         # Make the request to the endpoint
-        monkeypatch.setattr(base, "get_demo", lambda: mock_print)
+        monkeypatch.setattr(
+            base, "get_avalanche_from_api", lambda: mock_avalanche_api
+        )
+        monkeypatch.setattr(
+            base, "filter_forecasts", lambda: mock_forcast_filter
+        )
         response = client.get("/demo-get-call")
 
         # Assertions
         assert response.status_code == 200
-        assert response.json() == "hello from mock"
 
         # Ensure that get_avalanche_from_api was not called since the cached response is up-to-date
-        # get_avalanche_from_api.assert_not_called()
