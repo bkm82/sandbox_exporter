@@ -8,6 +8,8 @@ Be creative! do whatever you want!
 - Import things from your .base module
 """
 
+import uvicorn
+
 
 def main():  # pragma: no cover
     """
@@ -25,4 +27,8 @@ def main():  # pragma: no cover
         * List all available tasks
         * Run an application (Flask, FastAPI, Django, etc.)
     """
+
+    from base import app
+
+    uvicorn.run(app, host="0.0.0.0", port=5000)
     print("This will do something")
